@@ -1,4 +1,4 @@
-package com.normaldeve.carelinkbackend.domain;
+package com.normaldeve.carelinkbackend.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,8 +30,11 @@ public class PharmacyDocument {
     private String id;
 
     private String pharmacyId;
+
     private String name;
+
     private String address;
+
     private String phone;
 
     @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
@@ -39,6 +42,7 @@ public class PharmacyDocument {
 
     // 요일별 시작/종료 (MON..SUN, HOLIDAY)
     private Map<String, String> startTime;
+
     private Map<String, String> closeTime;
 
     private LocalDateTime updatedAt;

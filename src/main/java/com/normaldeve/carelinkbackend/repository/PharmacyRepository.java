@@ -1,6 +1,6 @@
 package com.normaldeve.carelinkbackend.repository;
 
-import com.normaldeve.carelinkbackend.domain.PharmacyDocument;
+import com.normaldeve.carelinkbackend.document.PharmacyDocument;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.repository.MongoRepository;
