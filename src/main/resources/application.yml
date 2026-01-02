@@ -5,19 +5,19 @@ spring:
   config:
     import: optional:file:.env[.properties]
 
-  mongodb:
-    host: ${MONGO_HOST}
-    port: 27017
-    database: ${MONGO_DATABASE}
-    username: ${MONGO_USERNAME}
-    password: ${MONGO_PASSWORD}
-    authentication-database: admin
+  data:
+    mongodb:
+      host: ${MONGO_HOST}
+      port: 27017
+      database: ${MONGO_DATABASE}
+      username: ${MONGO_USERNAME}
+      password: ${MONGO_PASSWORD}
+      authentication-database: admin
 
   ai:
     openai:
       api-key: ${OPENAI_API_KEY}
-    chat:
-      memory:
-        repository:
-          jdbc:
-            initialize-schema: always
+      chat:
+        options:
+          model: gpt-5-mini
+          temperature: 1.0
