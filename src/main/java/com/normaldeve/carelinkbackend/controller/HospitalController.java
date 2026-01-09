@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/hospitals")
+@RequestMapping("/api/hospitals")
 public class HospitalController {
 
     private final HospitalService hospitalService;

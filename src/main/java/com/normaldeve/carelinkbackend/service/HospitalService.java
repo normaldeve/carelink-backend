@@ -20,13 +20,15 @@ public class HospitalService {
 
     private final MongoTemplate mongoTemplate;
 
+    // 사용자 위치 기준으로 병원 검색 (최대 5개)
     public List<HospitalDocument> findNearbyHospital(double latitude, double longitude, double distanceKm) {
         Point point = new Point(longitude, latitude);
 
         NearQuery nearQuery = NearQuery
                 .near(point)
                 .spherical(true)
-                .maxDistance(new Distance(distanceKm, Metrics.KILOMETERS));
+                .maxDistance(new Distance(distanceKm, Metrics.KILOMETERS))
+                .limit(5);
 
         GeoResults<HospitalDocument> results = mongoTemplate.geoNear(nearQuery, HospitalDocument.class);
 
