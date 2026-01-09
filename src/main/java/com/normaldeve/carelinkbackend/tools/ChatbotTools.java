@@ -1,5 +1,7 @@
 package com.normaldeve.carelinkbackend.tools;
 
+import com.normaldeve.carelinkbackend.document.HospitalDocument;
+import com.normaldeve.carelinkbackend.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
@@ -17,17 +19,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatbotTools {
 
+    private final HospitalService hospitalService;
+
     @Tool(
             name = "findHospitals",
-            description = "사용자 위치와 진료과를 기반으로 병원을 추천한다"
+            description = "사용자 위치를 기반으로 근처 병원을 검색한다."
     )
-    public List<String> findHospitals(
+    public List<HospitalDocument> findHospitals(
             @ToolParam(description = "위도") double lat,
             @ToolParam(description = "경도") double lon,
-            @ToolParam(description = "진료과") String department
+            @ToolParam(description = "거리") double distance
     ) {
-        // 실제 병원 추천 로직
-        return List.of("서울대병원", "강남세브란스");
+
+        return hospitalService.findNearbyHospital(lat, lon, distance);
     }
 
 }
